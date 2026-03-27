@@ -222,6 +222,23 @@
 
   .panel { display: none; }
   .panel.active { display: block; }
+  .btn-clear {
+  display: inline-block;
+  margin-top: 12px;
+  margin-left: 10px;
+  padding: 10px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-clear:hover { background: var(--ink); color: var(--paper); }
 </style>
 </head>
 <body>
@@ -298,12 +315,37 @@ tel:+27123456789"></textarea>
       <a class="btn-download" id="download-btn" href="#" download="qrcode.png">
         ⬇ Download PNG
       </a>
+      <button class="btn-clear" id="clear-btn" onclick="clearAll()">
+  ✕ Clear
+</button>
     </div>
   </div>
 
 </main>
 
 <script>
+  function clearAll() {
+  // hide the output card
+  document.getElementById('output-card').classList.remove('show');
+
+  // clear text input
+  document.getElementById('text-input').value = '';
+
+  // clear image upload
+  document.getElementById('file-input').value = '';
+  document.getElementById('img-preview').src = '';
+  document.getElementById('img-preview').style.display = 'none';
+  document.querySelector('.dropzone .icon').style.display = 'block';
+
+  // clear QR image
+  document.getElementById('qr-img').src = '';
+
+  // hide any errors
+  document.getElementById('error-msg').style.display = 'none';
+
+  // scroll back to top of form
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   // ── Tab switching ──────────────────────────────────────────────────────────
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {

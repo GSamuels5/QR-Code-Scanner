@@ -15,7 +15,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(QR_FOLDER,     exist_ok=True)
 
 # Change this to your real domain when deployed, e.g. "https://myqrapp.com"
-BASE_URL = os.environ.get("BASE_URL", "http://localhost:5000")
+BASE_URL = os.environ.get("BASE_URL", "https://qr-code-scanner-fgwa.onrender.com")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def make_qr(data: str, filename: str, fg="#000000", bg="#ffffff") -> str:
